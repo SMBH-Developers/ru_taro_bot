@@ -47,4 +47,6 @@ async def send_late_taro_analyze(message: types.Message, user_choose: int):
     photo, text = get_taro_card(user_choose)
     await db.update_stage(message.from_user.id, 'stage_3')
     file = types.InputFile(photo)
-    await message.answer_photo(file, caption=text, reply_markup=kb.to_autoanswer, parse_mode='html')
+    await message.answer_photo(file, caption=text, parse_mode='html')
+    await asyncio.sleep(1.5)
+    await message.answer(texts.byte_message, reply_markup=kb.to_autoanswer, parse_mode='html')
