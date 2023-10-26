@@ -1,4 +1,5 @@
 import asyncio
+import random
 
 from aiogram import types
 from aiogram.dispatcher import FSMContext
@@ -9,6 +10,9 @@ from ..constants import DATA_DIR
 from ..common import dp
 from ..models import db
 from ._utils import kb, texts, states
+
+
+codes = list(range(124561, 463281))
 
 
 @dp.message_handler(commands=['start'], state='*')
@@ -49,4 +53,5 @@ async def send_late_taro_analyze(message: types.Message, user_choose: int):
     file = types.InputFile(photo)
     await message.answer_photo(file, caption=text, parse_mode='html')
     await asyncio.sleep(1.5)
-    await message.answer(texts.byte_message, reply_markup=kb.to_autoanswer, parse_mode='html')
+    code = random.choice(codes)
+    await message.answer(texts.byte_message.substitute(code=str(code)), reply_markup=kb.to_autoanswer, parse_mode='html')
