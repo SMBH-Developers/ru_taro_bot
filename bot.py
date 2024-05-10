@@ -11,8 +11,8 @@ from src.admin.handlers import _menu_handlers, _users_handlers, _stages_handlers
 
 async def on_startup(_):
     asyncio.create_task(amqp_queue_task())
-    asyncio.create_task(Sending2Hours().start())
-    asyncio.create_task(Sending24Hours().start())
+    # asyncio.create_task(Sending2Hours().start())
+    # asyncio.create_task(Sending24Hours().start())
 
 
 if __name__ == '__main__':
